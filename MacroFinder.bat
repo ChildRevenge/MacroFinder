@@ -1,4 +1,5 @@
 @echo off
+if not "%1"=="am_admin" (powershell start -verb runas '%0' am_admin & exit /b)
 cls
 set g=[92m
 set r=[91m
@@ -157,5 +158,4 @@ if exist "%Blackweb%" (
 )
 echo Scan Finished
 echo The User's Current time:%r% %TIME%
-
 pause>nul
