@@ -65,7 +65,7 @@ set "Marvo2=%localAppData%\BY-8801-GM917-v108\pro.dct"
 set "ReDragon=C:\Users%username%\AppData\Roaming\REDRAGON\GamingMouse\config.ini" 
 set "ReDragon2=C:\Users%username%\AppData\Roaming\REDRAGON\GamingMouse\macro.ini"
 set "ReDragon3=C:\Users%username%\AppData\Roaming\REDRAGON\GamingMouse" 
-set "ReDragonM7=C:\Users%USERNAME%\Documents\M711\*.MacroDB" //
+set "ReDragonM7=C:\Users%USERNAME%\Documents\M711\*.MacroDB"
 
 echo %d%Would you like to Run Fsutil Commands? [Y/N]
 set /p M=""
@@ -210,14 +210,14 @@ if exist "%ReDragonM7%" (
 
 
 
-findstr /C:"turbo: true" "%RazerT%" >nul
+findstr /C:"turbo: true" "%RazerT%" 2>nul
 if %errorlevel% equ 0 (
     echo Razer Turbo mode Is Activated
 )
 
-findstr /C:"MacroClient:Delete" "%Razer4%"
+findstr /C:"MacroClient:Delete" "%Razer4%" 2>nul
 if %errorlevel% equ 0 (
-    echo String found!
+    echo Detected a Deleted Razer Macro
 )
 
 if exist "%Razer1%" (
