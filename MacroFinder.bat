@@ -34,6 +34,7 @@ set "Glorious2=C:\ProgramData\Glorious Core\userdata\guru\data\DevicesDB.db" //
 set "corsair=%appData%\corsair\CUE\config.cuecfg"
 set "bloody=%programFilesX86%\Bloody7\Bloody7\UserLog\Mouse\TLcir_9EFF3FF4\language\Settings\EnvironmentVar.ini"
 set "steel=%appData%\steelseries-engine-3-client\Session Storage\000003.log"
+set "Steel1=C:\Program Files\SteelSeries\GG"
 set "Alienware=%ALLUSERSPROFILE%\Alienware\AlienWare Command Center\fxmetadata\.json"
 set "Motospeed=%programFiles%\Gaming MouseV30\record.ini"
 set "Marsgaming=%programFilesX86%\Gaming Mouse\Config.ini"
@@ -67,7 +68,7 @@ set "ReDragon2=C:\Users%username%\AppData\Roaming\REDRAGON\GamingMouse\macro.ini
 set "ReDragon3=C:\Users%username%\AppData\Roaming\REDRAGON\GamingMouse" 
 set "ReDragonM7=C:\Users%USERNAME%\Documents\M711\*.MacroDB"
 
-echo %d%Would you like to Run Fsutil Commands? [Y/N]
+echo %d%Would you like to Run Fsutil Commands For Macros? [Y/N]
 set /p M=""
 if %M% == Y goto Fsutil
 if %M% == N goto start
@@ -75,12 +76,19 @@ if %M% == N goto start
 :Fsutil
 mkdir %appdata%\SS\Fsutils\Mouse
 cls
-fsutil usn readjournal c: csv | findstr /i /c:.mck | findstr /i /c:0x80000200 >> T16Macro.txt > %appdata%\SS\Fsutils\Mouse\T16Macro.txt
-fsutil usn readjournal c: csv | findstr /i /c:.amc2 | findstr /i /c:0x80000200 >> BloodyMacros.txt > %appdata%\SS\Fsutils\Mouse\BloodyMacros.txt
-fsutil usn readjournal c: csv | findstr /i /c:.mcf | findstr /i /c:0x80000200 >> Glorious.txt > %appdata%\SS\Fsutils\Mouse\Glorious.txt
-fsutil usn readjournal c: csv | findstr /i /c:.cuecfg | findstr /i /c:0x80000200 >> Corsair.txt > %appdata%\SS\Fsutils\Mouse\Corsair.txt
+set folderPath=%appdata%\SS\Fsutils
+if exist "%folderPath%" (
+    rd /s /q "%folderPath%"
+)
+set Fsutil="%appdata%\SS\Fsutils\Mouse\FsutilJournal.txt"
+del %Fsutil%
+fsutil usn readjournal c: csv >> %appdata%\SS\Fsutils\FsutilJournal.txt
+findstr /i /c:.mck | findstr /i /c:0x80000200 >> %appdata%\SS\Fsutils\Mouse\T16Macro.txt
+findstr /i /c:.amc2 | findstr /i /c:0x80000200 >> %appdata%\SS\Fsutils\Mouse\BloodyMacros.txt
+findstr /i /c:.mcf | findstr /i /c:0x80000200 >> %appdata%\SS\Fsutils\Mouse\Glorious.txt
+findstr /i /c:.cuecfg | findstr /i /c:0x80000200 >> %appdata%\SS\Fsutils\Mouse\Corsair.txt
 start "" %appdata%\SS\Fsutils\Mouse
-echo Press Any key to continue!
+echo Press any key to continue!
 pause>nul
 
 
@@ -252,7 +260,7 @@ if exist "%Glorious%" (
     )
 
 if exist "%corsair%" (
-    for %%A in ("%Glorious%") do (
+    for %%A in ("%corsair%") do (
     echo Corsair mouse detected, Modified at: %%~tA
      )
 )
@@ -263,9 +271,15 @@ if exist "%bloody%" (
 )
 
 if exist "%steel%" (
-    for %%A in ("%bloody%") do (
+    for %%A in ("%steel%") do (
         echo SteelSeries mouse detected, Modified at: %%~tA
     )
+)
+
+if exist "%Steel1%" (
+     for %%A in ("%Steel1%") do ( 
+     echo SteelSeries Mouse detected, Modified at: %%~tA
+     )
 )
 
 if exist "%Alienware%" (
@@ -331,12 +345,12 @@ if exist "%Blackweb%" (
     )
 )
 echo Scan Finished
-echo The User's Current time:%r% %TIME%
+echo The User's Current time:%r% %date%\%TIME%
 set folderPath=%appdata%\SS
 
 if exist "%folderPath%" (
     rd /s /q "%folderPath%"
 )
-echo %c%Press any Button to Leave!
+echo %c%Press any Button to Leave
 pause>nul
 
