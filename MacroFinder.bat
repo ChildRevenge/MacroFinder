@@ -67,7 +67,9 @@ set "ReDragon=C:\Users%username%\AppData\Roaming\REDRAGON\GamingMouse\config.ini
 set "ReDragon2=C:\Users%username%\AppData\Roaming\REDRAGON\GamingMouse\macro.ini"
 set "ReDragon3=C:\Users%username%\AppData\Roaming\REDRAGON\GamingMouse" 
 set "ReDragonM7=C:\Users%USERNAME%\Documents\M711\*.MacroDB"
-
+set "kolke=C:\Program Files (x86)\Driver Nombredemouse\INI_CN\*.dat"
+set "kolke2=C:\Program Files (x86)\Driver Nombredemouse\INI_EN\*.dat"
+set "Aukey=%localappdata%\JM01"
 echo %d%Would you like to Run Fsutil Commands For Macros? [Y/N]
 set /p M=""
 if %M% == Y goto Fsutil
@@ -91,9 +93,26 @@ start "" %appdata%\SS\Fsutils\Mouse
 echo Press any key to continue!
 pause>nul
 
-
 :start
 cls
+if exist "%Aukey%" (
+    for %%A in ("%Aukey%") do ( 
+        echo %d%Aukey Mouse Detected, Modified At: %%~tA
+    )
+)
+
+if exist "%kolke%" (
+    for %%A in ("%kolke%") do (
+        echo %d%Kolke Mouse Detected, Modified at: %%~tA
+    )
+)
+
+if exist "%kolke2%" (
+    for %%A in ("%kolke2%") do (
+        echo %d%Kolke Mouse Detected, Modified at: %%~tA
+    )
+)
+
 if exist "%Roccat%" (
     for %%A in ("%Roccat%") do (
         echo %d%Roccat mouse detected, Modified at: %%~tA
