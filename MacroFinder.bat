@@ -70,29 +70,6 @@ set "ReDragonM7=C:\Users%USERNAME%\Documents\M711\*.MacroDB"
 set "kolke=C:\Program Files (x86)\Driver Nombredemouse\INI_CN\*.dat"
 set "kolke2=C:\Program Files (x86)\Driver Nombredemouse\INI_EN\*.dat"
 set "Aukey=%localappdata%\JM01"
-echo %d%Would you like to Run Fsutil Commands For Macros? [Y/N]
-set /p M=""
-if %M% == Y goto Fsutil
-if %M% == N goto start
-
-:Fsutil
-mkdir %appdata%\SS\Fsutils\Mouse
-cls
-set folderPath=%appdata%\SS\Fsutils
-if exist "%folderPath%" (
-    rd /s /q "%folderPath%"
-)
-set Fsutil="%appdata%\SS\Fsutils\Mouse\FsutilJournal.txt"
-del %Fsutil%
-fsutil usn readjournal c: csv >> %appdata%\SS\Fsutils\FsutilJournal.txt
-findstr /i /c:.mck | findstr /i /c:0x80000200 >> %appdata%\SS\Fsutils\Mouse\T16Macro.txt
-findstr /i /c:.amc2 | findstr /i /c:0x80000200 >> %appdata%\SS\Fsutils\Mouse\BloodyMacros.txt
-findstr /i /c:.mcf | findstr /i /c:0x80000200 >> %appdata%\SS\Fsutils\Mouse\Glorious.txt
-findstr /i /c:.cuecfg | findstr /i /c:0x80000200 >> %appdata%\SS\Fsutils\Mouse\Corsair.txt
-start "" %appdata%\SS\Fsutils\Mouse
-echo Press any key to continue!
-pause>nul
-
 :start
 cls
 if exist "%Aukey%" (
@@ -261,7 +238,7 @@ if exist "%Razer2%" (
 
 if exist "%Razer3%" (
     for %%A in ("%Razer3%") do (
-        echo %d%Razer mouse detected, Modified at: %%~tA
+        echo %d%Razer mouse detected, Razer Synapse Opened/Modified at: %%~tA
     ) 
 )
 
