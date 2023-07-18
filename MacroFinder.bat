@@ -70,8 +70,22 @@ set "ReDragonM7=C:\Users%USERNAME%\Documents\M711\*.MacroDB"
 set "kolke=C:\Program Files (x86)\Driver Nombredemouse\INI_CN\*.dat"
 set "kolke2=C:\Program Files (x86)\Driver Nombredemouse\INI_EN\*.dat"
 set "Aukey=%localappdata%\JM01"
-:start
+set "RaptureMacro=%PROGRAMFILES(X86)%\Rapture\Rapture COBRA\Data\ms_1\macro.data"
+set "RaptureConfig=%PROGRAMFILES(X86)%\Rapture\Rapture COBRA\Data\ms_1\Config_1.data"
 cls
+
+if exist "%RaptureMacro%" (
+    for %%A in ("%RaptureMacro%") do ( 
+        echo %d%Rapture Cobra Macro Detected, Modified At: %%~tA
+    )
+)
+
+if exist "%RaptureConfig%" (
+    for %%A in ("%RaptureConfig%") do ( 
+        echo %d%Rapture Cobra Mouse Detected, Modified At: %%~tA
+    )
+)
+
 if exist "%Aukey%" (
     for %%A in ("%Aukey%") do ( 
         echo %d%Aukey Mouse Detected, Modified At: %%~tA
